@@ -23,7 +23,6 @@ public class ReviewActivity extends AppCompatActivity implements ViewInterface<R
     private TextView empty;
     private ReviewPresenter reviewPresenter;
     private ReviewAdapter reviewAdapter;
-    private static final String API_KEY = "2c35c921410c9727265ed66192629a38";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class ReviewActivity extends AppCompatActivity implements ViewInterface<R
         empty = findViewById(R.id.empty);
 
         reviewPresenter = new ReviewPresenter(this);
-        reviewPresenter.getData(movieId, API_KEY);
+        reviewPresenter.getData(movieId, getString(R.string.api_key));
     }
 
     @Override

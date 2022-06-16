@@ -47,9 +47,8 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.MyViewHolder
         myViewHolder.cvGenre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Hawk.init(context).build();
-                Hawk.put("idGenre", genre.getId());
                 Intent toMovie = new Intent(context, MovieActivity.class);
+                toMovie.putExtra("idGenre", genre.getId().toString());
                 context.startActivity(toMovie);
             }
         });

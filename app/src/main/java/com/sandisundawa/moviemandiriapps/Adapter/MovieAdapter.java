@@ -58,9 +58,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         myViewHolder.cvMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Hawk.init(context).build();
-                Hawk.put("idMovie",result.getId());
                 Intent toDetail = new Intent(context, DetailActivity.class);
+                toDetail.putExtra("idMovie", result.getId());
                 context.startActivity(toDetail);
             }
         });

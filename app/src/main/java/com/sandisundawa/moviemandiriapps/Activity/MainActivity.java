@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity implements ViewInterface<Mai
     private RecyclerView rvGenre;
     private GenrePresenter genrePresenter;
     private GenreAdapter genreAdapter;
-    private static final String API_KEY = "2c35c921410c9727265ed66192629a38";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements ViewInterface<Mai
         rvGenre = findViewById(R.id.rv_genre);
 
         genrePresenter = new GenrePresenter(this);
-        genrePresenter.getData(API_KEY);
+        genrePresenter.getData(getString(R.string.api_key));
     }
 
     @Override

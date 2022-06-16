@@ -20,15 +20,13 @@ public class DetailActivity extends AppCompatActivity implements ViewInterface<D
     private TextView judul, rating, durasi, deskripsi;
     private Button review;
     private DetailMoviePresenter detailMoviePresenter;
-    private Integer idMovie;
-    private static final String API_KEY = "2c35c921410c9727265ed66192629a38";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Hawk.init(this).build();
-        idMovie = Hawk.get("idMovie");
+
+        Integer idMovie = getIntent().getIntExtra("idMovie", 0);
 
         judul = findViewById(R.id.title_movie);
         rating = findViewById(R.id.rating);
@@ -37,7 +35,7 @@ public class DetailActivity extends AppCompatActivity implements ViewInterface<D
         review = findViewById(R.id.see_review);
 
         detailMoviePresenter = new DetailMoviePresenter(this);
-        detailMoviePresenter.getData(idMovie, API_KEY);
+        detailMoviePresenter.getData(idMovie, getString(R.string.api_key));
     }
 
     @Override

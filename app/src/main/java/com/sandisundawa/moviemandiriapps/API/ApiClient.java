@@ -26,12 +26,11 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiClient {public static final String base_url = "https://api.themoviedb.org/3/";
+public class ApiClient {
+    public static final String base_url = "https://api.themoviedb.org/3/";
     public static Retrofit retrofit = null;
 
     public static Retrofit getApiClient() {
-
-
 
         String hostname = "debug";
         okhttp3.CertificatePinner certificatePinner = new CertificatePinner.Builder()
@@ -110,41 +109,5 @@ public class ApiClient {public static final String base_url = "https://api.themo
         }
 
         return client;
-    }
-
-    public static void disableCertificateValidation() {
-        // Create a trust manager that does not validate certificate chains
-        TrustManager[] trustAllCerts = new TrustManager[]{
-                new X509TrustManager() {
-                    public X509Certificate[] getAcceptedIssuers() {
-                        return new X509Certificate[0];
-                    }
-
-                    public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                    }
-
-                    public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                    }
-                }};
-
-        // Ignore differences between given hostname and certificate hostname
-        HostnameVerifier hv = new HostnameVerifier() {
-            public boolean verify(String hostname, SSLSession session) {
-                if(hostname.equalsIgnoreCase("https://virtual.student.endpoint.edulogy.id")){
-                    return true;
-                }else {
-                    return  false;
-                }
-            }
-        };
-
-        // Install the all-trusting trust manager
-        try {
-            SSLContext sc = SSLContext.getInstance("SSL");
-            sc.init(null, trustAllCerts, new SecureRandom());
-            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-            HttpsURLConnection.setDefaultHostnameVerifier(hv);
-        } catch (Exception e) {
-        }
     }
 }

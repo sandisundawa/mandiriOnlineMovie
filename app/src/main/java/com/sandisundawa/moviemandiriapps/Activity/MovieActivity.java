@@ -19,21 +19,17 @@ public class MovieActivity extends AppCompatActivity implements ViewInterface<Mo
     private RecyclerView rvMovie;
     private MoviePresenter moviePresenter;
     private MovieAdapter movieAdapter;
-    private Integer idGenre;
-    private static final String API_KEY = "2c35c921410c9727265ed66192629a38";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
-        Hawk.init(this).build();
-        idGenre = Hawk.get("idGenre");
 
-        String idGenreString = idGenre.toString();
+        String genre = getIntent().getStringExtra("idGenre");
 
         rvMovie = findViewById(R.id.rv_movie);
         moviePresenter = new MoviePresenter(this);
-        moviePresenter.getData(API_KEY, idGenreString);
+        moviePresenter.getData(getString(R.string.api_key), genre);
 
     }
 
